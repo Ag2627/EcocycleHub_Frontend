@@ -19,7 +19,7 @@ import NotFoundPage from "./components/common/NotFoundPage";
  import { Toaster } from 'sonner'; 
 import AdminLayout from "./components/Admin/AdminLayout";
 import ManageRewards from "./components/Admin/ManageRewards";
-import UnauthPage from "./components/common/Unauthpage";
+import UnauthPage from "./components/common/UnauthPage";
 import Reports from "./components/Admin/Reports";
 import Users from "./components/Admin/Users";
 import AdminDashboard from "./components/Admin/AdminDashboard";
