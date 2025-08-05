@@ -29,7 +29,7 @@ const wasteTypes = [
   { value: "textiles", label: "Textiles/Clothing" },
   { value: "appliances", label: "Appliances" }
 ];
-
+const API = import.meta.env.VITE_API_BASE_URL;
 
 const RecyclingCenters = () => {
   const mapContainerRef = useRef(null);
@@ -49,7 +49,7 @@ const RecyclingCenters = () => {
   const fetchCentersFromBackend = async () => {
     try {
       // ✅ Correct
-const response = await fetch("http://localhost:5000/ngos");
+const response = await fetch(`${API}/ngos`);
 
 
       const data = await response.json();
@@ -132,7 +132,7 @@ const addMarkers = () => {
     // Call backend API to get centers
     try {
       const response = await fetch(
-  `http://localhost:5000/ngos/nearby?lat=${lat}&lng=${lng}&distance=${maxDistance}`
+  `${API}/ngos/nearby?lat=${lat}&lng=${lng}&distance=${maxDistance}`
 
       );
       const data = await response.json();
@@ -180,7 +180,7 @@ const addMarkers = () => {
 
     // 3. Send coordinates to backend
     const backendResponse = await fetch(
-  `http://localhost:5000/ngos/nearby?lat=${lat}&lng=${lng}&distance=${maxDistance}`
+  `${API}/ngos/nearby?lat=${lat}&lng=${lng}&distance=${maxDistance}`
 );
 
     const data = await backendResponse.json();

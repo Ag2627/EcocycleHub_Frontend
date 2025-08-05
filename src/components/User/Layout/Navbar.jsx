@@ -25,7 +25,7 @@ const Navbar = () => {
     navigate("/");
   };
 
-  const url = "http://localhost:5173";
+  const url = "https://resplendent-taiyaki-c9400a.netlify.app/";
   const navLinks = [
     { name: "Report Waste", path: `${url}/user/report` },
     { name: "My Reports", path: `${url}/user/my-reports` },

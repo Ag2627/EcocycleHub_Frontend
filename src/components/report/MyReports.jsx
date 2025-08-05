@@ -20,7 +20,7 @@ const statusIcons = {
   completed: <CheckCircle className="w-5 h-5" />,
   reward: <Gift className="w-5 h-5" />,
 };
-
+const API = import.meta.env.VITE_API_BASE_URL;
 const MyReports = () => {
   const user = useSelector((state) => state.auth.user);
   const [reports, setReports] = useState([]);
@@ -30,7 +30,7 @@ const location = useLocation();
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/reports/user/${user._id}`);
+        const res = await axios.get(`${API}/reports/user/${user._id}`);
         setReports(res.data);
       } catch (err) {
         console.error("Error fetching reports", err);
@@ -45,7 +45,7 @@ const location = useLocation();
   }, [user?._id, location.state?.refresh]);
   const handleRemindAdmin = async (report) => {
   try {
-    await axios.post(`http://localhost:5000/remind`, {
+    await axios.post(`${API}/remind`, {
       reportId: report._id,
       userId: user._id,
     });

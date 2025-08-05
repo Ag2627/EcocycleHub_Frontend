@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+const API = import.meta.env.VITE_API_BASE_URL;
 
 export const submitReport = createAsyncThunk(
   "report/submitReport",
   async (formData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/reports/create",
+        `${API}/reports/create`,
         formData,
         {
           withCredentials: true,
@@ -22,7 +23,7 @@ export const fetchAllReports = createAsyncThunk(
   "report/fetchAllReports",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:5000/reports/all", {
+      const response = await axios.get(`${API}/reports/all`, {
         withCredentials: true,
       });
       console.log("Fetched reports:", response.data);
@@ -38,7 +39,7 @@ export const updateReportStatus = createAsyncThunk(
   async ({ id, status }, { rejectWithValue }) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/reports/status/${id}`,
+        `${API}/reports/status/${id}`,
         { status },
         { withCredentials: true }
       );

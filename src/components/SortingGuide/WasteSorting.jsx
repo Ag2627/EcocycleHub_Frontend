@@ -12,11 +12,6 @@ const WasteSorting = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const [result, setResult] = useState(null);
-  const [isCameraOpen, setIsCameraOpen] = useState(false);
-  const [cameraStream, setCameraStream] = useState(null);
-  const videoRef = useRef(null);
-  const canvasRef = useRef(null);
-
   // Handle image upload
   const handleImageUpload = async (event) => {
     const file = event.target.files?.[0];
@@ -103,51 +98,6 @@ const WasteSorting = () => {
       reader.onerror = reject;
     });
   };
-  // Handle camera capture
-  // const handleCameraCapture = async () => {
-  //   try {
-  //     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-  //     setCameraStream(stream);
-  //     setIsCameraOpen(true);
-  //     if (videoRef.current) {
-  //       videoRef.current.srcObject = stream;
-  //     }
-  //   } catch (err) {
-  //     toast.error("Unable to access camera.");
-  //     console.error("Camera error:", err);
-  //   }
-  // };
-  // const capturePhoto = () => {
-  //   if (!videoRef.current || !canvasRef.current) return;
-
-  //   const video = videoRef.current;
-  //   const canvas = canvasRef.current;
-  //   const context = canvas.getContext("2d");
-
-  //   canvas.width = video.videoWidth;
-  //   canvas.height = video.videoHeight;
-  //   context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-  //   canvas.toBlob(async (blob) => {
-  //     if (blob) {
-  //       const file = new File([blob], "captured_image.jpg", {
-  //         type: "image/jpeg",
-  //       });
-  //       await handleImageUpload({ target: { files: [file] } });
-  //     }
-  //   }, "image/jpeg");
-
-  //   // Stop camera after capturing
-  //   stopCamera();
-  // };
-
-  // const stopCamera = () => {
-  //   if (cameraStream) {
-  //     cameraStream.getTracks().forEach((track) => track.stop());
-  //     setCameraStream(null);
-  //   }
-  //   setIsCameraOpen(false);
-  // };
 
   // Reset the state
   const handleReset = () => {
@@ -275,13 +225,6 @@ const WasteSorting = () => {
                               onChange={handleImageUpload}
                             />
                           </label>
-                          {/* <Button 
-                            onClick={handleCameraCapture}
-                            className="bg-blue-600 hover:bg-blue-700"
-                          >
-                            <Camera className="mr-2 h-4 w-4" />
-                            <span>Take Photo</span>
-                          </Button> */}
                         </div>
                       </div>
                     </div>

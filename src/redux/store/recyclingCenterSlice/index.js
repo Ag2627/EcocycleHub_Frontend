@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const API_URL = "http://localhost:5000/ngos";
+const API = import.meta.env.VITE_API_BASE_URL;
+const API_URL = '${API}/ngos';
 export const fetchCenters = createAsyncThunk("centers/fetch", async () => {
   const res = await axios.get(API_URL);
   return res.data;

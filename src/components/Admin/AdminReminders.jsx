@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Clock, CheckCircle } from 'lucide-react';
+const API = import.meta.env.VITE_API_BASE_URL;
 
 const AdminReminders = () => {
   const [reminders, setReminders] = useState([]);
@@ -11,7 +12,7 @@ const AdminReminders = () => {
 
   const fetchReminders = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/remind');
+      const res = await axios.get(`${API}/remind`);
       setReminders(res.data);
     } catch (err) {
       console.error('Failed to fetch reminders', err);
@@ -20,7 +21,7 @@ const AdminReminders = () => {
 
   const handleResolve = async (reminderId) => {
   try {
-    await axios.patch(`http://localhost:5000/remind/${reminderId}/resolve`);
+    await axios.patch(`${API}/remind/${reminderId}/resolve`);
     alert("Reminder resolved and report marked as completed!");
 
     // Remove the resolved reminder from UI
