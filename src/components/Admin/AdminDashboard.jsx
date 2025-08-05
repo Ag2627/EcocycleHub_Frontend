@@ -4,6 +4,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recha
 import { TrendingUp, Users, FileText, CheckCircle } from "lucide-react";
 import axios from "axios";
 const COLORS = ["#3B82F6", "#10B981", "#F59E0B", "#EF4444", "#8B5CF6"];
+const API = import.meta.env.VITE_API_BASE_URL;
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -16,7 +17,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/reports/dashboard-stats");
+        const res = await axios.get(`${API}/reports/dashboard-stats`);
         setStats(res.data.stats);
       } catch (err) {
         console.error("Error fetching dashboard stats", err);
